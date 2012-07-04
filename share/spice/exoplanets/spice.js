@@ -37,6 +37,15 @@ function ddg_spice_exoplanets(response) {
         if (skip.indexOf(prop) != -1) continue;
         if (expand.indexOf(prop) != -1) {
             for (var type in planet[prop]) {
+                if (type == "orbit") {
+                    answer += "<hr>";
+                    for (var orbitalProperty in planet[prop][type]) {
+                        answer += "<i>" + orbitalProperty.charAt(0).toUpperCase() + orbitalProperty.slice(1)
+                                + "</i>: " + planet[prop][type][orbitalProperty] + "<br>";
+                    }
+                    answer += "<hr>";
+                    continue;
+                }
                 answer += "<i>" + type.charAt(0).toUpperCase() + type.slice(1)
                         + "</i>: " + planet[prop][type] + "<br>";
             }
