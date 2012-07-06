@@ -27,7 +27,13 @@ function ddg_spice_exoplanets(response) {
 	items[0]['u'] = 'http://exoapi.com';
 	items[0]['t'] = 'Data';
 	items[0]['f'] = 1;
-    //items[0]["force_big_header"] = true;
+    items[0]["force_big_header"] = true;
+
+    function formatData(data, name) {
+        if (data instanceof Object) return '';
+        return "<i>" + name.charAt(0).toUpperCase() + name.slice(1)
+               + "</i>: " + data + "<br>";
+    }
 
     answer = '<br>';
     for (var prop in planet) {
@@ -40,19 +46,16 @@ function ddg_spice_exoplanets(response) {
                 if (type == "orbit") {
                     answer += "<hr>";
                     for (var orbitalProperty in planet[prop][type]) {
-                        answer += "<i>" + orbitalProperty.charAt(0).toUpperCase() + orbitalProperty.slice(1)
-                                + "</i>: " + planet[prop][type][orbitalProperty] + "<br>";
+                        answer += formatData(planet[prop][type][orbitalProperty], orbitalProperty);
                     }
                     answer += "<hr>";
                     continue;
                 }
-                answer += "<i>" + type.charAt(0).toUpperCase() + type.slice(1)
-                        + "</i>: " + planet[prop][type] + "<br>";
+                answer += formatData(planet[prop][type], type);
             }
             continue;
         }
-        answer += "<i>" + prop.charAt(0).toUpperCase() + prop.slice(1)
-                + "</i>: " + planet[prop] + "<br>";
+        answer += formatData(planet[prop], prop);
     }
 
 	items[1] = new Array();
