@@ -31,8 +31,18 @@ function ddg_spice_exoplanets(response) {
 
     function formatData(data, name) {
         if (data instanceof Object) return '';
-        return "<tr><td><i>" + name.charAt(0).toUpperCase() + name.slice(1)
-               + "</i>:</td><td>" + data + "</td></tr>";
+        var displayName = [];
+        displayName["discoverymethod"] = "Discovery method";
+        displayName["semimajoraxis"] = "Semi-major axis";
+        displayName["spectraltype"] = "Spectal type";
+        displayName["rightascension"] = "Right ascension";
+        displayName["angurlardistance"] = "Angular distance";
+        displayName["discoveryyear"] = "Discovery year";
+        return "<tr><td><i>"
+               + (displayName[name] ? displayName[name] :
+                       name.charAt(0).toUpperCase() + name.slice(1))
+               + "</i>:</td><td>"
+               + data + "</td></tr>";
     }
 
     answer = '<br>'
@@ -68,6 +78,7 @@ function ddg_spice_exoplanets(response) {
 
     var table = document.getElementById("exoplanet_stats");
     for (var i = 0; i < table.rows.length; i++) {
-        if (i % 2 == 0) table.rows[i].className="tr_odd";
+        if (i % 2 == 0) table.rows[i].className="tr_odd"
+        else table.rows[i].className="tr_even";
     }
 }
