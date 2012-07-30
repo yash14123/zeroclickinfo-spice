@@ -31,11 +31,12 @@ function ddg_spice_exoplanets(response) {
 
     function formatData(data, name) {
         if (data instanceof Object) return '';
-        return "<i>" + name.charAt(0).toUpperCase() + name.slice(1)
-               + "</i>: " + data + "<br>";
+        return "<tr><td><i>" + name.charAt(0).toUpperCase() + name.slice(1)
+               + "</i>:</td><td>" + data + "</td></tr>";
     }
 
-    answer = '<br>';
+    answer = '<br>'
+           + '<table id="exoplanet_stats">';
     for (var prop in planet) {
         var skip = "description name image"
                  + "imagedescription _id id_exoplaneteu new";
@@ -44,11 +45,9 @@ function ddg_spice_exoplanets(response) {
         if (expand.indexOf(prop) != -1) {
             for (var type in planet[prop]) {
                 if (type == "orbit") {
-                    answer += "<hr>";
                     for (var orbitalProperty in planet[prop][type]) {
                         answer += formatData(planet[prop][type][orbitalProperty], orbitalProperty);
                     }
-                    answer += "<hr>";
                     continue;
                 }
                 answer += formatData(planet[prop][type], type);
@@ -57,6 +56,7 @@ function ddg_spice_exoplanets(response) {
         }
         answer += formatData(planet[prop], prop);
     }
+    answer += '</table>';
 
 	items[1] = new Array();
 	items[1]['a'] = answer;
@@ -64,5 +64,10 @@ function ddg_spice_exoplanets(response) {
 	items[1]['s'] = 'ExoAPI';
 	items[1]['u'] = 'http://exoapi.com';
 
-	nra(items);
+    nra(items);
+
+    var table = document.getElementById("exoplanet_stats");
+    for (var i = 0; i < table.rows.length; i++) {
+        if (i % 2 == 0) table.rows[i].className="tr_odd";
+    }
 }
