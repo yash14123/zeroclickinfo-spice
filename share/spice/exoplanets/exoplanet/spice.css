@@ -1,0 +1,20 @@
+.tr_odd {
+    background-color: lightgrey;
+    }
+
+.tr_even {
+    }
+
+#zero_click_abstract table td {
+    padding-right: 15px;
+    }
+
+#zero_click_abstract table th {
+    color: 666666;
+    font-size: 12px;
+    font-weight: 700;
+    }
+
+#zero_click_abstract div {
+    margin-top: 10px;
+    }
