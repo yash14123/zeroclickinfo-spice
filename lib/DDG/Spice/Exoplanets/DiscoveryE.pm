@@ -1,4 +1,4 @@
-package DDG::Spice::Exoplanets::Discovery-gt-lt;
+package DDG::Spice::Exoplanets::DiscoveryE;
 
 use DDG::Spice;
 
