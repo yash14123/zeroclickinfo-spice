@@ -11,9 +11,11 @@ function ddg_spice_mta(response) {
 
     for (var i in busses) {
         var bus = busses[i].MonitoredVehicleJourney;
-        answer += bus.LineRef + ": "
-               +  bus.MonitoredCall.Extensions.Distances.PresentableDistance
-               + "<br>";
+        var busline = bus.LineRef.replace(/^MTA NYCT_/, "");
+        var distance = bus.MonitoredCall.Extensions.Distances.PresentableDistance;
+        var direction = bus.DirectionRef;
+        answer += "There is a" + (direction == 1 ? "n uptown " : " downtown ")
+               +  busline + " bus " + distance + ".<br>";
     }
 
 
