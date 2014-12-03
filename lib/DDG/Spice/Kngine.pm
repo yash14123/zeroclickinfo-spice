@@ -18,8 +18,10 @@ triggers any => "height", "tall";
 spice to => 'http://api.kngine.com/SearchAPI1.ashx?key=CFF5EE1C4AD94B5DA27DFFE6AA5B8472&q=$1';
 spice wrap_jsonp_callback => 1;
 
+my $guard = qr/^(?:what(?: is| was|'?s) the |)(?:(?:number|height|volume|diameter|length|size|area|circumference|capital|speed) of|mass|radius|density|distance|elevation|population|age|(?:birth|death)\s?(?:year|date|day)|weight|sun(?:rise|set)|tides?)\s+.*$/i;
+
 handle query_lc => sub {
-    return $_ if $_;
+    return $_ if ($_ && $_ =~ $guard);
     return;
 };
 
