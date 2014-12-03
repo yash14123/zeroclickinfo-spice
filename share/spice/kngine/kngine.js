@@ -1,12 +1,17 @@
 (function(env) {
     "use strict";
 
-    // TODO
-    // - Exit if we find "I'm sorry, I don't know what you mean by ... "
-
     env.ddg_spice_kngine = function(api_result) {
         console.log(api_result);
 
+        if(!api_result || api_result.Status !== "Ok" || !api_result.Result.TextAnswer) {
+            return Spice.failed("kngine");
+        }
+        
+        if(/I don’t know what you mean by/.test(api_result.Result.TextAnswer)) {
+            return Spice.failed("kngine");
+        }
+        
         Spice.add({
             id: "kngine",
             name: "Kngine",
