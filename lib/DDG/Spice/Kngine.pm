@@ -3,7 +3,7 @@ package DDG::Spice::Kngine;
 use DDG::Spice;
 
 # TODO
-# - how tall is mount everest, how tall is tom cruise
+# - how tall is mount everest, how tall is tom cruise ✔
 # - how deep is the pacific ocean
 # - how far is the sun from jupiter
 # - SiO10
