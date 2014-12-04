@@ -14,12 +14,10 @@
         }
 
         var types = {
-            // 'what is the height of tom cruise'
             'keyValueText': {
                 title: 'Value',
                 subtitle: 'Key'
             },
-            // 'what is the height of mount everest'
             'text': {
                 title: 'Content',
                 subtitle: null
@@ -44,7 +42,6 @@
                 if(item.Type == "list") {
                     for(var i = 0; i < item.Items.length; i++) {
                         if(item.Items[i].Type in types) {
-                            console.log(types[item.Items[i].Type].title, types[item.Items[i].Type].subtitle);
                             return {
                                 title: item.Items[i][types[item.Items[i].Type].title],
                                 subtitle: item.Items[i][types[item.Items[i].Type].subtitle]
