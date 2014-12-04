@@ -13,6 +13,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Kngine',
         is_cached => 1,
     ),
+    'what is the height of tom cruise?' => test_spice(
+        '/js/spice/kngine/what%20is%20the%20height%20of%20tom%20cruise%3F',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kngine',
+        is_cached => 1,
+    ),
+    'how tall is tom cruise?' => test_spice(
+        '/js/spice/kngine/how%20tall%20is%20tom%20cruise%3F',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kngine',
+        is_cached => 1,
+    ),
 );
 
 done_testing;
