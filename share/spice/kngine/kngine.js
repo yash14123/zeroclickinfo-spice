@@ -12,12 +12,24 @@
         if(/I don’t know what you mean by/.test(api_result.Result.TextAnswer)) {
             return Spice.failed("kngine");
         }
-        
+
+        var types = {
+            // 'what is the height of tom cruise'
+            'keyValueText': {
+                title: 'Value',
+                subtitle: 'Key'
+            },
+            // 'what is the height of mount everest'
+            'text': {
+                title: 'Content',
+                subtitle: null
+            },
+        };
+
         Spice.add({
             id: "kngine",
             name: "Kngine",
-            // TODO: Generalize this.
-            data: api_result.Result.Items[0].Items[0],
+            data: api_result.Result.Items,
             meta: {
                 sourceName: 'Kngine',
                 sourceIcon: true,
@@ -28,10 +40,20 @@
                 group: "text"
             },
             normalize: function(item) {
-                return {
-                    title: item.Value,
-                    subtitle: item.Key
-                };
+                // Find the item with the type 'list'.
+                if(item.Type == "list") {
+                    for(var i = 0; i < item.Items.length; i++) {
+                        if(item.Items[i].Type in types) {
+                            console.log(types[item.Items[i].Type].title, types[item.Items[i].Type].subtitle);
+                            return {
+                                title: item.Items[i][types[item.Items[i].Type].title],
+                                subtitle: item.Items[i][types[item.Items[i].Type].subtitle]
+                            };
+                        }
+                    }
+                }
+
+                return null;
             }
         });
     };
