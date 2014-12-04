@@ -7,7 +7,8 @@
         if(!api_result || api_result.Status !== "Ok" || !api_result.Result.TextAnswer) {
             return Spice.failed("kngine");
         }
-        
+
+        // Return early if we didn't get a good response.
         if(/I don’t know what you mean by/.test(api_result.Result.TextAnswer)) {
             return Spice.failed("kngine");
         }

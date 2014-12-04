@@ -21,6 +21,7 @@ spice wrap_jsonp_callback => 1;
 handle query_lc => sub {
     return unless $_;
 
+    # TODO: Make this regexp look nicer.
     if($_ =~ qr/^(?:what(?: is| was|'?s) the |)(?:(?:number|height|volume|diameter|length|size|area|circumference|capital|speed) of|mass|radius|density|distance|elevation|population|age|(?:birth|death)\s?(?:year|date|day)|weight|sun(?:rise|set)|tides?)\s+.*$/ || ($_ =~ qr/^.*\s+(?:mass|radius|diameter|prime|surjective|density|distance|elevation|height|population|age|(?:birth|death)\s?(?:year|date|day)|weight|sun(?:rise|set)|tides?)$/ && $_ !~ qr/^(?:what\'s |what is | what are |)my/) || $_ =~ qr/\bhow many\b.*\b(?:in|on)\b/ || $_ =~ qr/^[^\s]+ in a (?:year|month|mile|day|hour|gallon|quart|pint|meter|ton|km|kilometer|pound|kilo|kilogram)$/) {
         return $_;
     }
