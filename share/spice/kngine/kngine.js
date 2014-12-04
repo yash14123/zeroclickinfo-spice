@@ -14,13 +14,17 @@
         }
 
         var types = {
-            'keyValueText': {
-                title: 'Value',
-                subtitle: 'Key'
+            'keyValueText': function(item, child_item) {
+                return {
+                    title: child_item.Value,
+                    subtitle: child_item.Key
+                };
             },
-            'text': {
-                title: 'Content',
-                subtitle: null
+            'text': function(item, child_item) {
+                return {
+                    title: child_item.Content,
+                    subtitle: item.Title
+                };
             },
         };
 
@@ -42,10 +46,7 @@
                 if(item.Type == "list") {
                     for(var i = 0; i < item.Items.length; i++) {
                         if(item.Items[i].Type in types) {
-                            return {
-                                title: item.Items[i][types[item.Items[i].Type].title],
-                                subtitle: item.Items[i][types[item.Items[i].Type].subtitle]
-                            };
+                            return types[item.Items[i].Type](item, item.Items[i]);
                         }
                     }
                 }

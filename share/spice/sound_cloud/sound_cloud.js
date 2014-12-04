@@ -11,10 +11,6 @@
             // Blacklist some adult results.
             skip_ids = {
                 80320921: 1, 
-                
-                
-                
-                
                 75349402: 1
             };
 
@@ -52,10 +48,6 @@
                     image = o.waveform_url;
                     usingWaveformImage = 1;
                 } else {
-                    
-                    
-                    
-                    
                     // Get the larger image for our IA.
                     image = image.replace(/large\.jpg/, "t200x200.jpg");
                 }
