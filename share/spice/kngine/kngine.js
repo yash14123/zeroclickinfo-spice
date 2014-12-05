@@ -1,5 +1,6 @@
 // Weird results:
 // - "how deep is the pacific ocean" doesn't give the units.
+// - Terrible handling of "volume of a sphere". Ignore these kinds of answers.
 
 (function(env) {
     "use strict";
