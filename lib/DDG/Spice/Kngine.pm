@@ -14,7 +14,7 @@ use DDG::Spice;
 # - how big is the moon
 # - circumference of the earth
 
-triggers any => "height", "tall";
+triggers any => "height", "tall", "deep";
 spice to => 'http://api.kngine.com/SearchAPI1.ashx?key=CFF5EE1C4AD94B5DA27DFFE6AA5B8472&q=$1';
 spice wrap_jsonp_callback => 1;
 
