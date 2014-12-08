@@ -1,6 +1,6 @@
 // Weird results:
 // - "how deep is the pacific ocean" doesn't give the units.
-// - Terrible handling of "volume of a sphere". Ignore these kinds of answers.
+// - "how tall is mount everest" and "what is the height of mount everest" no longer have short answers.
 
 (function(env) {
     "use strict";

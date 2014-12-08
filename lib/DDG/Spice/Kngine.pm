@@ -6,6 +6,7 @@ use DDG::Spice;
 # - how tall is mount everest, how tall is tom cruise 
 # - how deep is the pacific ocean
 # - how far is the sun from jupiter, distance between the sun and jupiter
+# - birth date of bono
 
 # What isn't supported:
 # - SiO10
@@ -14,13 +15,12 @@ use DDG::Spice;
 # - volume of a sphere
 
 # TODO:
-# - birth date of bono
 # - death date of lincoln
 # - weight of a penny
 # - how big is the moon
 # - circumference of the earth
 
-triggers any => "height", "tall", "deep", "far", "distance";
+triggers any => "height", "tall", "deep", "far", "distance", "birth";
 spice to => 'http://api.kngine.com/SearchAPI1.ashx?key={{ENV{DDG_SPICE_KNGINE_APIKEY}}}&q=$1';
 spice wrap_jsonp_callback => 1;
 
