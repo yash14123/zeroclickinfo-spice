@@ -21,7 +21,7 @@ use DDG::Spice;
 # - circumference of the earth
 
 triggers any => "height", "tall", "deep", "far", "distance";
-spice to => 'http://api.kngine.com/SearchAPI1.ashx?key=CFF5EE1C4AD94B5DA27DFFE6AA5B8472&q=$1';
+spice to => 'http://api.kngine.com/SearchAPI1.ashx?key={{ENV{DDG_SPICE_KNGINE_APIKEY}}}&q=$1';
 spice wrap_jsonp_callback => 1;
 
 handle query_lc => sub {
