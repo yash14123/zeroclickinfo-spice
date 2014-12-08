@@ -7,15 +7,16 @@ use DDG::Spice;
 # - how deep is the pacific ocean
 # - how far is the sun from jupiter, distance between the sun and jupiter
 # - birth date of bono
+# - when did lincoln die
 
-# What isn't supported:
+# What isn't supported by their API:
 # - SiO10
+# - death date of lincoln
 
 # What will be ignored (since other IAs have implemented them):
 # - volume of a sphere
 
 # TODO:
-# - death date of lincoln
 # - weight of a penny
 # - how big is the moon
 # - circumference of the earth

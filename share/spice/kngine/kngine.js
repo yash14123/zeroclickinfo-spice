@@ -1,6 +1,7 @@
 // Weird results:
 // - "how deep is the pacific ocean" doesn't give the units.
 // - "how tall is mount everest" and "what is the height of mount everest" no longer have short answers.
+// - "when did lincoln die" doesn't have a short answer (answer is in paragraph form).
 
 (function(env) {
     "use strict";
