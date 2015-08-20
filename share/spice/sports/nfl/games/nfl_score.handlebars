@@ -60,7 +60,7 @@
 	</div>
 	<div class="c-score__foot">
 		<div class="c-score__foot__main">
-			<div class="c-score__venue">@ {{home_team.venue.city}}<span class="c-score__venue__name"> - {{home_team.venue.name}}</span></div>
+			<div class="c-score__venue {{#if has_ended}}c-score__venue--long{{/if}}">@ {{home_team.venue.name}}<span class="c-score__venue__name"> ({{home_team.venue.city}})</span></div>
 			<div class="c-score__foot__more  c-score__opt">
 			{{#if is_playing}}
 				<span class="c-score__foot__info">{{textLastUpdate}}</span>
