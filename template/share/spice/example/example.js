@@ -1,5 +1,15 @@
 (function (env) {
     "use strict";
+
+    // define private variables and functions here
+    //
+    // fuction helper () { ... }
+    //
+    // var a = '',
+    //     b = '',
+    //     c = '';
+
+
     env.ddg_spice_<: $lia_name :> = function(api_result){
 
         // Validate the response (customize for your Spice)
@@ -9,30 +19,55 @@
 
         // Render the response
         Spice.add({
-            id: "<: $lia_name :>",
+            id: '<: $lia_id :>',
 
-            // Customize these properties
             name: "AnswerBar title",
-            data: api_result,
+
             meta: {
-                sourceName: "Example.com",
-                sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+                sourceName: "Source Domain",
+                sourceUrl: "https://source.website.com"
             },
-            normalize: function(item) {
+
+            // data: {
+            //     already defined in Perl Package
+            //     you can re-define it here
+            //     or access/modify 'ops.data'
+            // },
+
+
+            templates: {
+              group: 'text',
+
+              // options: {
+              //
+              // },
+
+              // variants: {
+              //
+              // }
+            },
+
+            normalize: function(item){
+                //   use this to map your 'data'
+                //   to the properties required for your chosen template
+
                 return {
-                    // customize as needed for your chosen template
-                    title: api_result.title,
-                    subtitle: api_result.subtitle,
-                    image: api_result.icon
+                    title: item.myTitle
+                    subtitle: item.foo.subtitle
+                    image: item.pictures.medium
                 };
             },
-            templates: {
-                group: 'your-template-group',
-                options: {
-                    content: Spice.<: $lia_name :>.content,
-                    moreAt: true
-                }
+
+            // Function that executes after template content is displayed
+            onShow: function() {
+
+                // define any callbacks or event handlers here
+                //
+                // var $dom = $(".zci--'<: $lia_id :>'");
+                // $dom.find(".my-special-class").click(funtcion(){
+                //
+                // });
             }
-        });
+        };
     };
 }(this));
