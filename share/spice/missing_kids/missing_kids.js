@@ -7,6 +7,29 @@
         });
     }
 
+    var states = {
+        "AL": "Alabama",            "AK": "Alaska",          "AZ": "Arizona",        "AR": "Arkansas",
+        "CA": "California",         "CO": "Colorado",        "CT": "Connecticut",    "DE": "Delaware",
+        "FL": "Florida",            "GA": "Georgia",         "HI": "Hawaii",         "ID": "Idaho",
+        "IL": "Illinois",           "IN": "Indiana",         "IA": "Iowa",           "KS": "Kansas",
+        "KY": "Kentucky",           "LA": "Louisiana",       "ME": "Maine",          "MD": "Maryland",
+        "MA": "Massachusetts",      "MI": "Michigan",        "MN": "Minnesota",      "MS": "Mississippi",
+        "MO": "Missouri",           "MT": "Montana",         "NE": "Nebraska",       "NV": "Nevada",
+        "NH": "New Hampshire",      "NJ": "New Jersey",      "NM": "New Mexico",     "NY": "New York",
+        "NC": "North Carolina",     "ND": "North Dakota",    "OH": "Ohio",           "OK": "Oklahoma",
+        "OR": "Oregon",             "PA": "Pennsylvania",    "RI": "Rhode Island",   "SC": "South Carolina",
+        "SD": "South Dakota",       "TN": "Tennessee",       "TX": "Texas",          "UT": "Utah",
+        "VT": "Vermont",            "VA": "Virginia",        "WA": "Washington",     "WV": "West Virginia",
+        "WI": "Wisconsin",          "WY": "Wyoming"
+    };
+
+    function getState(code) {
+        if (states[code].length) {
+            return states[code];
+        }
+        return code;
+    }
+
     // get name from "Missing: FIRST LAST (AA)."
     var nameReg = /^\w+\: ([^\(]+) .+$/;
     // get date from "Missing: ##/##/####."
@@ -38,7 +61,7 @@
         var script = $('[src*="/js/spice/missing_kids/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/missing_kids\/([^\/]+)/)[1],
-            decodedQuery = decodeURIComponent(query);
+            stateCode = decodeURIComponent(query);
 
         DDG.require("moment.js", function(){
 
@@ -62,10 +85,10 @@
 
             Spice.add({
                 id: 'missing_kids',
-                name: 'Missing Kids',
+                name: 'Missing Children',
                 data: articles,
                 meta: {
-                    primaryText: 'Missing children in ' + decodedQuery,
+                    primaryText: 'Missing children in ' + getState(stateCode),
                     sourceName: 'National Center for Missing & Exploited Children',
                     sourceUrl: 'http://www.missingkids.com',
                     count: articles.length
@@ -93,6 +116,7 @@
                     date = moment(date).format("MMM Do, YYYY");
 
                     var phone = phoneReg.exec(description);
+                    var state_code = locReg.exec(description)[2].trim();
 
                     return {
                         title: capitalizeWords(title),
@@ -101,7 +125,7 @@
                         image: item.enclosure.url.replace("t.jpg", ".jpg"),
                         age: ageReg.exec(description)[1],
                         city: capitalizeWords( locReg.exec(description)[1] ),
-                        state: locReg.exec(description)[2],
+                        state: state_code,
                         contact: phone ? phone[1] : contactReg.exec(description)[1].replace("Police Department", "PD")
                     };
                 },

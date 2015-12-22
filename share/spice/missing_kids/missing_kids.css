@@ -5,7 +5,7 @@
 }
 
 .tile--missing_kids .tile__media {
-    height: 20em;
+    height: auto;
 }
 
 .tile--missing_kids .tile__body {
@@ -15,5 +15,3 @@
 .tile--missing_kids .tile__foot {
     max-height: 4em;
 }
-
-
